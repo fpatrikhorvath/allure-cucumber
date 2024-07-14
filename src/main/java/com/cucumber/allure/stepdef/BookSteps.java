@@ -49,7 +49,6 @@ public class BookSteps extends TestCore {
     @Then("verify that book {word} does not exist")
     public void verifyThatBookDoesNotExist(final String bookId) {
         BookDTO book = (BookDTO) scenarioContext.getContextObject(bookId);
-
         ResponseEntity<List<BookDTO>> response = getBookService().getBooks(book);
         assertTrue(response.getStatusCode().isSameCodeAs(HttpStatus.OK));
 

@@ -87,7 +87,6 @@ public class RestClient extends HttpInterfacesAbstractConfigurator {
                         .append(": ")
                         .append(val)
                         .append("\" ")));
-
         curlCommand.append(url).append(endpoint).append(" ");
 
         if (body != null) {

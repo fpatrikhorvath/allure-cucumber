@@ -1,12 +1,12 @@
 package com.cucumber.allure.stepdef;
 
 import com.cucumber.allure.context.ScenarioContext;
+import com.cucumber.allure.rest.model.BookDTO;
+import com.cucumber.allure.rest.model.GenericErrorResponse;
+import com.cucumber.allure.rest.model.UserDTO;
 import com.cucumber.allure.stores.UserLayerContextStore;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openapitools.model.BookDTO;
-import org.openapitools.model.GenericErrorResponse;
-import org.openapitools.model.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

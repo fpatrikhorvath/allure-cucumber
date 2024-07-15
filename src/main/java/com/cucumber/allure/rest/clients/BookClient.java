@@ -2,11 +2,10 @@ package com.cucumber.allure.rest.clients;
 
 import com.cucumber.allure.config.UserLayerConfig;
 import com.cucumber.allure.rest.RestClient;
+import com.cucumber.allure.rest.model.BookDTO;
+import com.cucumber.allure.rest.model.CreateBookForUserRequestDTO;
+import com.cucumber.allure.rest.model.GenericErrorResponse;
 import io.cucumber.spring.ScenarioScope;
-import org.openapitools.api.BookApi;
-import org.openapitools.model.BookDTO;
-import org.openapitools.model.CreateBookForUserRequestDTO;
-import org.openapitools.model.GenericErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ import java.util.List;
 
 @Service
 @ScenarioScope
-public class BookClient implements BookApi {
+public class BookClient{
     private static final String GET_BOOK_PATH = "/users/{userId}/books";
     private static final String POST_BOOK_PATH = "/users/{userId}/books";
     private static final String DELETE_BOOK_PATH = "/users/{userId}/books/{bookId}";
@@ -31,21 +30,18 @@ public class BookClient implements BookApi {
         this.restClient = new RestClient(this.userLayerConfig.getUrl(), headers);
     }
 
-    @Override
     public ResponseEntity<BookDTO> createBookForUser(final Long userId, final CreateBookForUserRequestDTO body) {
         String endpoint = StringUtils.replace(POST_BOOK_PATH, "{userId}", String.valueOf(userId));
         return restClient.post(endpoint, body, BookDTO.class);
     }
 
 
-    @Override
     public ResponseEntity<GenericErrorResponse> createBookForUserNeg
             (final Long userId, final CreateBookForUserRequestDTO body) {
         String endpoint = StringUtils.replace(POST_BOOK_PATH, "{userId}", String.valueOf(userId));
         return restClient.post(endpoint, body, GenericErrorResponse.class);
     }
 
-    @Override
     public ResponseEntity<Void> deleteBookForUser(final Long userId, final Long bookId) {
         String endpoint = StringUtils
                 .replace(DELETE_BOOK_PATH, "{userId}", String.valueOf(userId))
@@ -54,7 +50,6 @@ public class BookClient implements BookApi {
         return restClient.delete(endpoint, Void.class);
     }
 
-    @Override
     public ResponseEntity<GenericErrorResponse> deleteBookForUserNeg(final Long userId, final Long bookId) {
         String endpoint = StringUtils
                 .replace(DELETE_BOOK_PATH, "{userId}", String.valueOf(userId))
@@ -62,13 +57,11 @@ public class BookClient implements BookApi {
         return restClient.delete(endpoint, GenericErrorResponse.class);
     }
 
-    @Override
     public ResponseEntity<List<BookDTO>> getBooksForUser(final Long userId) {
         String endpoint = StringUtils.replace(GET_BOOK_PATH, "{userId}", String.valueOf(userId));
         return restClient.getList(endpoint, BookDTO.class);
     }
 
-    @Override
     public ResponseEntity<GenericErrorResponse> getBooksForUserNeg(final Long userId) {
         String endpoint = StringUtils.replace(GET_BOOK_PATH, "{userId}", String.valueOf(userId));
         return restClient.get(endpoint, GenericErrorResponse.class);

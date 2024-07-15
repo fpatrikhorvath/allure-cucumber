@@ -1,13 +1,13 @@
 package com.cucumber.allure.service;
 
 import com.cucumber.allure.rest.clients.BookClient;
+import com.cucumber.allure.rest.model.BookDTO;
+import com.cucumber.allure.rest.model.CreateBookForUserRequestDTO;
+import com.cucumber.allure.rest.model.GenericErrorResponse;
+import com.cucumber.allure.rest.model.UserDTO;
 import io.cucumber.spring.ScenarioScope;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openapitools.model.BookDTO;
-import org.openapitools.model.CreateBookForUserRequestDTO;
-import org.openapitools.model.GenericErrorResponse;
-import org.openapitools.model.UserDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

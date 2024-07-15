@@ -1,9 +1,9 @@
 package com.cucumber.allure.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openapitools.configuration.HttpInterfacesAbstractConfigurator;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,8 +11,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 
 
-public class RestClient extends HttpInterfacesAbstractConfigurator {
+public class RestClient{
     private static final Logger LOG = LogManager.getLogger(RestClient.class);
+    private final ObjectMapper mapper = new ObjectMapper();
+    private HttpHeaders headers = new HttpHeaders();
+    private final WebClient webClient;
     private String url;
 
     public RestClient(final String url,

@@ -1,12 +1,12 @@
 package com.cucumber.allure.service;
 
 import com.cucumber.allure.rest.clients.UserClient;
+import com.cucumber.allure.rest.model.CreateUser201ResponseDTO;
+import com.cucumber.allure.rest.model.CreateUserRequestDTO;
+import com.cucumber.allure.rest.model.UserDTO;
 import io.cucumber.spring.ScenarioScope;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openapitools.model.CreateUser201ResponseDTO;
-import org.openapitools.model.CreateUserRequestDTO;
-import org.openapitools.model.UserDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

@@ -1,12 +1,12 @@
 package com.cucumber.allure.stepdef;
 
 import com.cucumber.allure.context.ScenarioContext;
+import com.cucumber.allure.rest.model.CreateUser201ResponseDTO;
+import com.cucumber.allure.rest.model.UserDTO;
 import com.cucumber.allure.stores.UserLayerContextStore;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openapitools.model.CreateUser201ResponseDTO;
-import org.openapitools.model.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

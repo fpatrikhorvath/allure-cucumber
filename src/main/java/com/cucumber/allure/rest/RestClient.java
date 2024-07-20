@@ -101,6 +101,6 @@ public class RestClient{
             }
         }
 
-        LOG.info("Curl command: " + curlCommand.toString().trim());
+        LOG.debug("Curl command: " + curlCommand.toString().trim());
     }
 }

@@ -19,10 +19,8 @@ $ node server/server.js
 To run the allure report:
 
 ```
-$ node server/server.js
+$ allure serve
 ```
-## TODOS
 
-- CLI run <- not tested yet
 ## License
 MIT

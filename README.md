@@ -9,13 +9,11 @@ The Openapi/Swagger code generator can help You generate the DTOs and the reques
 3. Run the allure locally or remotely
 
 ## Commands
-
 To run the mocked server:
 
 ```
 $ node server/server.js
 ```
-
 To run the allure report:
 
 ```

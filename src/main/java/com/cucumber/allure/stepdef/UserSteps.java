@@ -28,8 +28,8 @@ public class UserSteps extends TestCore {
     @Given("(create )a new user of status {word} and store it as {word} -> {}")
     public void createANewUserOfTypeAndStoreItAs
             (final String statusString, final String contextId, final HttpStatus httpStatus) {
-        UserDTO user = getUserService().initContextUser(statusString);
-        ResponseEntity<CreateUser201ResponseDTO> response = getUserService().registerUser(user);
+        final UserDTO                                  user     = getUserService().initContextUser(statusString);
+        final ResponseEntity<CreateUser201ResponseDTO> response = getUserService().registerUser(user);
         assertTrue(response.getStatusCode().isSameCodeAs(httpStatus));
 
         if (response.getStatusCode().isSameCodeAs(HttpStatus.CREATED)) {
@@ -41,11 +41,11 @@ public class UserSteps extends TestCore {
 
     @Then("verify that user {word} exists")
     public void verifyThatUserExists(final String contextId) {
-        UserDTO expUser = (UserDTO) scenarioContext.getContextObject(contextId);
-        ResponseEntity<List<UserDTO>> response = getUserService().getUsers();
+        final UserDTO                       expUser  = (UserDTO) scenarioContext.getContextObject(contextId);
+        final ResponseEntity<List<UserDTO>> response = getUserService().getUsers();
         assertTrue(response.getStatusCode().isSameCodeAs(HttpStatus.OK));
 
-        UserDTO actUser = Objects.requireNonNull(response.getBody())
+        final UserDTO actUser = Objects.requireNonNull(response.getBody())
                 .stream()
                 .filter(u -> Objects.equals(u.getName(), expUser.getName()))
                 .findFirst()
@@ -56,18 +56,18 @@ public class UserSteps extends TestCore {
 
     @When("delete user {word} -> {}")
     public void deleteUser(final String contextId, final HttpStatus httpStatus) {
-        UserDTO user = (UserDTO) scenarioContext.getContextObject(contextId);
+        UserDTO              user     = (UserDTO) scenarioContext.getContextObject(contextId);
         ResponseEntity<Void> response = getUserService().deleteUser(user.getId());
         assertTrue(response.getStatusCode().isSameCodeAs(httpStatus));
     }
 
     @Then("verify that user {word} does not exist")
     public void verifyThatUserDoesNotExist(final String contextId) {
-        UserDTO user = (UserDTO) scenarioContext.getContextObject(contextId);
-        ResponseEntity<List<UserDTO>> response = getUserService().getUsers();
+        final UserDTO                       user     = (UserDTO) scenarioContext.getContextObject(contextId);
+        final ResponseEntity<List<UserDTO>> response = getUserService().getUsers();
         assertTrue(response.getStatusCode().isSameCodeAs(HttpStatus.OK));
 
-        UserDTO actUser = Objects.requireNonNull(response.getBody())
+        final UserDTO actUser = Objects.requireNonNull(response.getBody())
                 .stream()
                 .filter(u -> Objects.equals(u.getName(), user.getName()))
                 .findFirst()

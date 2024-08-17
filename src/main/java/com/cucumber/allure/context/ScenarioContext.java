@@ -10,7 +10,7 @@ import java.util.HashMap;
 @ScenarioScope
 public class ScenarioContext {
     private final HashMap<String, Object> contextObjectMap = new HashMap<>();
-    private ResponseErrorEnum response = null;
+    private       ResponseErrorEnum       response         = null;
 
     public ScenarioContext() {
     }

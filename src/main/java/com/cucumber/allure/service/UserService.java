@@ -17,18 +17,18 @@ import java.util.List;
 public class UserService {
     private static final Logger LOG = LogManager.getLogger(UserService.class);
 
-    private final UserClient userClient;
+    private final UserClient    userClient;
     private final RandomService randomService;
 
     public UserService(final UserClient userClient,
                        final RandomService randomService) {
-        this.userClient = userClient;
+        this.userClient    = userClient;
         this.randomService = randomService;
     }
 
     public UserDTO initContextUser(final String statusString) {
-        UserDTO user = new UserDTO();
-        UserDTO.StatusEnum status = UserDTO.StatusEnum.valueOf(statusString);
+        final UserDTO            user   = new UserDTO();
+        final UserDTO.StatusEnum status = UserDTO.StatusEnum.valueOf(statusString);
         user.setName(randomService.getRandomString(10));
         user.setEmail(randomService.getRandomString(7) + "@gmail.com");
         user.setStatus(status);
@@ -38,8 +38,8 @@ public class UserService {
     }
 
     public ResponseEntity<CreateUser201ResponseDTO> registerUser(final UserDTO user) {
-        CreateUserRequestDTO body = new CreateUserRequestDTO();
-        CreateUserRequestDTO.StatusEnum status = CreateUserRequestDTO.StatusEnum.valueOf(user.getStatus().toString());
+        final CreateUserRequestDTO            body   = new CreateUserRequestDTO();
+        final CreateUserRequestDTO.StatusEnum status = CreateUserRequestDTO.StatusEnum.valueOf(user.getStatus().toString());
         body.setName(user.getName());
         body.setEmail(user.getEmail());
         body.setStatus(status);

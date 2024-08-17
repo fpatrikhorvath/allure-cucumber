@@ -18,12 +18,11 @@ import java.util.List;
 @Service
 @ScenarioScope
 public class UserClient {
-    private static final String CREATE_USER_PATH = "/users";
-    private static final String GET_USER_PATH = "/users";
-    private static final String DELETE_USER_PATH = "/users/{userId}";
-
-    private final UserLayerConfig userLayerConfig;
-    private final RestClient restClient;
+    private static final String          CREATE_USER_PATH = "/users";
+    private static final String          GET_USER_PATH    = "/users";
+    private static final String          DELETE_USER_PATH = "/users/{userId}";
+    private final        UserLayerConfig userLayerConfig;
+    private final        RestClient      restClient;
 
     public UserClient(final UserLayerConfig userLayerConfig) {
         this.userLayerConfig = userLayerConfig;
@@ -35,7 +34,6 @@ public class UserClient {
     public ResponseEntity<CreateUser201ResponseDTO> createUser(final CreateUserRequestDTO body) {
         return restClient.post(CREATE_USER_PATH, body, CreateUser201ResponseDTO.class);
     }
-
 
 
     public ResponseEntity<GenericErrorResponse> createUserNeg(final CreateUserRequestDTO body) {

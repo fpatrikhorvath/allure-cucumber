@@ -26,16 +26,16 @@ public class BookSteps extends TestCore {
     @When("(create )a new book for user {word} and store it as {word} -> {}")
     public void createANewBookForUserAndStoreItAs
             (final String userId, final String bookId, final HttpStatus httpStatus) {
-        UserDTO user = (UserDTO) scenarioContext.getContextObject(userId);
-        BookDTO book = getBookService().initContextBook(user.getId());
+        final UserDTO user = (UserDTO) scenarioContext.getContextObject(userId);
+        final BookDTO book = getBookService().initContextBook(user.getId());
 
         if (CREATED.isSameCodeAs(httpStatus)) {
-            ResponseEntity<BookDTO> response = getBookService().registerBook(book);
+            final ResponseEntity<BookDTO> response = getBookService().registerBook(book);
             assertTrue(response.getStatusCode().isSameCodeAs(httpStatus));
             book.setId(Objects.requireNonNull(response.getBody()).getId());
 
         } else if (httpStatus.isError()) {
-            ResponseEntity<GenericErrorResponse> response = getBookService().registerBookNegative(book);
+            final ResponseEntity<GenericErrorResponse> response = getBookService().registerBookNegative(book);
             assertTrue(response.getStatusCode().isSameCodeAs(httpStatus));
             scenarioContext.storeResponse(Objects.requireNonNull(response.getBody()).getError());
 
@@ -48,8 +48,8 @@ public class BookSteps extends TestCore {
 
     @Then("verify that book {word} does not exist")
     public void verifyThatBookDoesNotExist(final String bookId) {
-        BookDTO book = (BookDTO) scenarioContext.getContextObject(bookId);
-        ResponseEntity<List<BookDTO>> response = getBookService().getBooks(book);
+        final BookDTO                       book     = (BookDTO) scenarioContext.getContextObject(bookId);
+        final ResponseEntity<List<BookDTO>> response = getBookService().getBooks(book);
         assertTrue(response.getStatusCode().isSameCodeAs(HttpStatus.OK));
 
         BookDTO actBook = Objects.requireNonNull(response.getBody())
@@ -63,9 +63,9 @@ public class BookSteps extends TestCore {
 
     @Then("verify that book {word} exist")
     public void verifyThatBookExist(final String bookId) {
-        BookDTO expBook = (BookDTO) scenarioContext.getContextObject(bookId);
+        final BookDTO expBook = (BookDTO) scenarioContext.getContextObject(bookId);
 
-        ResponseEntity<List<BookDTO>> response = getBookService().getBooks(expBook);
+        final ResponseEntity<List<BookDTO>> response = getBookService().getBooks(expBook);
         assertTrue(response.getStatusCode().isSameCodeAs(HttpStatus.OK));
 
         BookDTO actBook = Objects.requireNonNull(response.getBody())
@@ -80,8 +80,8 @@ public class BookSteps extends TestCore {
 
     @When("delete book {word} for user {word} -> {}")
     public void deleteBook(final String bookId, final String userId, final HttpStatus httpStatus) {
-        UserDTO user = (UserDTO) scenarioContext.getContextObject(userId);
-        BookDTO book = (BookDTO) scenarioContext.getContextObject(bookId);
+        final UserDTO user = (UserDTO) scenarioContext.getContextObject(userId);
+        final BookDTO book = (BookDTO) scenarioContext.getContextObject(bookId);
 
         ResponseEntity<Void> response = getBookService().deleteBook(user, book);
         assertTrue(response.getStatusCode().isSameCodeAs(httpStatus));

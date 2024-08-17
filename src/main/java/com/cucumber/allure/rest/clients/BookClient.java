@@ -16,12 +16,12 @@ import java.util.List;
 
 @Service
 @ScenarioScope
-public class BookClient{
-    private static final String GET_BOOK_PATH = "/users/{userId}/books";
-    private static final String POST_BOOK_PATH = "/users/{userId}/books";
-    private static final String DELETE_BOOK_PATH = "/users/{userId}/books/{bookId}";
-    private final UserLayerConfig userLayerConfig;
-    private final RestClient restClient;
+public class BookClient {
+    private static final String          GET_BOOK_PATH    = "/users/{userId}/books";
+    private static final String          POST_BOOK_PATH   = "/users/{userId}/books";
+    private static final String          DELETE_BOOK_PATH = "/users/{userId}/books/{bookId}";
+    private final        UserLayerConfig userLayerConfig;
+    private final        RestClient      restClient;
 
     public BookClient(final UserLayerConfig userLayerConfig) {
         this.userLayerConfig = userLayerConfig;

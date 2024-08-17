@@ -17,8 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 @Primary
 @ScenarioScope
 public class TestCore {
-    protected final ScenarioContext       scenarioContext;
-    protected final UserLayerContextStore userLayerContextStore;
+    protected final ScenarioContext scenarioContext;
+
+    private final UserLayerContextStore userLayerContextStore;
 
     public TestCore(final UserLayerContextStore userLayerContextStore,
                     final ScenarioContext scenarioContext) {
